@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flowers Homepage</title>
+    <link rel="stylesheet" href="{% static 'flowers/css/style.css'%}">
+</head>
+<body>
+    <h1 style="color: deeppink"> This my Flowers website Home page </h1>
+
+       <h1> {{flowers}} </h1>
+        {% for flower in flowers%}
+           <li> {{flower}}  </li>
+        {% endfor %}
+
+        <h1> {{info}}</h1>
+        <li> {{info.name}} </li>
+        <li> {{info.track}}</li>
+
+    <img src="{% static 'flowers/images/img2.jpeg'%}">
+
+<script src="{% static 'flowers/js/script.js'%}"> </script>
+</body>
+</html>
