@@ -1,0 +1,22 @@
+{%extends 'flowers/layouts/base.html'%}
+{% load static %}
+{%block title %} Books index {%endblock%}
+{% block content %}
+
+    <h1> All books </h1>
+
+    {%for book in books %}
+        <div class="card" style="width: 18rem;display: inline-block;margin:15px;">
+          <img src="{%static 'books/images/'|add:book.image %}"
+               width="250" height="250"
+               class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{book.title}}</h5>
+            <p class="card-text">Description : {{book.description}}</p>
+
+            <a href="{% url 'books.show' book.id  %}" class="btn btn-primary">View </a>
+          </div>
+        </div>
+    {%endfor%}
+
+{%endblock%}
