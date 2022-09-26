@@ -2,23 +2,22 @@
 {% load static %}
 {%block title %} Books index {%endblock%}
 {% block content %}
-{{books}}
+
     <a href="{% url 'books.create' %}" class="btn btn-success">Create new Book </a>
 
     <h1> All books </h1>
 
     {%for book in books %}
-        <div class="card" style="width: 18rem;display: inline-block;margin:15px;">
+        <div class="card" style="width: 20rem;display: inline-block;margin:15px;">
           <img src="{% static 'books/images/'|add:book.image %}"
                width="250" height="250"
                class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">{{book.title}}</h5>
             <p class="card-text">Description : {{book.description}}</p>
-                {{book.image}}
 <!--            <a href="{% url 'db_books.show' book.id %}" class="btn btn-primary">View </a>-->
             <a href="{{book.get_show_url}}" class="btn btn-primary">View </a>
-
+                <a href="{{book.get_edit_url}}" class="btn btn-warning">Edit</a>
               <a href="{{book.get_delete_url}}" class="btn btn-danger">Delete</a>
 
           </div>

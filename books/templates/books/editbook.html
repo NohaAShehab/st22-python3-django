@@ -3,35 +3,43 @@
 {%block title %} Books index {%endblock%}
 {% block content %}
 
-    <h1> Create new book  </h1>
+    <h1> Edit book  </h1>
 
+  {{book}}
 
 <form  method="POST">
   {% csrf_token %}
   <div class="mb-3">
     <label class="form-label">Title</label>
-    <input type="text" name="title" class="form-control" >
+    <input type="text" name="title"  value="{{book.title}}" class="form-control" >
   </div>
   <div class="mb-3">
     <label class="form-label">Description</label>
-    <input type="text"  name='description' class="form-control" >
+    <input type="text"  name='description' value="{{book.description}}"  class="form-control" >
   </div>
 
     <div class="mb-3">
     <label class="form-label">Image</label>
-    <input type="text" name='image'  class="form-control" >
+    <input type="text" name='image' value="{{book.image}}" class="form-control" >
   </div>
   <div class="mb-3">
     <label class="form-label">No of pages</label>
-    <input type="number" name='no_of_pages' class="form-control" >
+
+
+    <input type="number" name='no_of_pages' value="{{book.no_of_pages}}" class="form-control" >
   </div>
 
-  <div class="mb-3">
+  {{book.author}}
+   <div class="mb-3">
     <label class="form-label">Author</label>
     <select class="form-select"  name="author" aria-label="Default select author">
-      <option value="" disabled selected>please select author</option>
+      <option value="{{book.author.id}}"  selected>{{book.author.name}}</option>
       {%for author in authors %}
-      <option value="{{author.id}}">{{author}}</option>
+<!--      {% if book.author.id == author.id %}-->
+<!--      <option value="{{author.id}}" selected>{{author}}</option>-->
+<!--      {% else %}-->
+       <option value="{{author.id}}" >{{author}}</option>
+<!--      {% endif %}-->
      {% endfor %}
     </select>
   </div>

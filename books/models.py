@@ -1,7 +1,7 @@
 from django.db import models
 from django.shortcuts import reverse, get_object_or_404
 
-
+from authors.models import Author
 # Create your models here.
 
 
@@ -12,6 +12,7 @@ class Book(models.Model):
     image = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    author = models.ForeignKey(Author, null=True, on_delete=models.CASCADE, related_name='authors_books')
 
     def __str__(self):
         return f'{self.title}'
@@ -35,3 +36,7 @@ class Book(models.Model):
 
     def get_delete_url(self):
         return reverse("db_books.delete", args=[self.id])
+
+
+    def get_edit_url(self):
+        return reverse("db_books.edit", args=[self.id])

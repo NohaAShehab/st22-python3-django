@@ -2,7 +2,9 @@
 {% load static %}
 {%block title %} Books details {%endblock%}
 {% block content %}
-    <h1> Book info </h1>
+
+    <div style="display: block">
+        <h1> Book info </h1>
         <div class="card" style="width: 25rem;display: inline-block;margin:15px;">
           <img src="{%static 'books/images/'|add:book.image %}"
                width="250" height="250"
@@ -11,10 +13,23 @@
             <h5 class="card-title">{{book.title}}</h5>
             <p class="card-text">Description : {{book.description}}</p>
           <p class="card-text">Number of pages : {{book.no_of_pages}}</p>
+              <p class="card-text">Author : <a href="{{book.author.get_show_url}}"> {{book.author}} </a>
           <p class="card-text">created_at : {{book.created_at}}</p>
           <p class="card-text">updated_at : {{book.updated_at}}</p>
 
+
             <a href="{%url 'db_books.index'%}" class="btn btn-primary">Back to all books </a>
           </div>
+
         </div>
+        <div style="display: inline-block">
+            <h1> See also</h1>
+            {%for b in book.author.authors_books.all%}
+                {% if book.id != b.id %}
+            <li><a href="{{b.get_show_url}}"> {{b}} </a></li>
+            {% endif %}
+            {%endfor %}
+        </div>
+    </div>
+
 {%endblock%}

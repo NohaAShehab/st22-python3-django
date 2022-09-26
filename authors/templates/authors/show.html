@@ -1,0 +1,19 @@
+{%extends 'flowers/layouts/base.html'%}
+{% load static %}
+{%block title %} Author details {%endblock%}
+{% block content %}
+    <h1> Author info </h1>
+        <div class="card" style="width: 25rem;display: inline-block;margin:15px;">
+          <img src="{{author.get_image_url}}"
+               width="250" height="250"
+               class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{author.name}}</h5>
+          <p class="card-text">created_at : {{author.created_at}}</p>
+          <p class="card-text">updated_at : {{author.updated_at}}</p>
+
+
+            <a href="{%url 'authors.index'%}" class="btn btn-primary">Back to all Authors </a>
+          </div>
+        </div>
+{%endblock%}

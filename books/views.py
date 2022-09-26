@@ -3,7 +3,7 @@ from django.http import HttpResponse
 # Create your views here.
 ### views can be created in form of functions /classes
 from books.models import Book
-
+from authors.models import Author
 def helloWorld(request):
     return HttpResponse("------Hello world-----")
 
@@ -68,12 +68,18 @@ def createBook(request):
         book.description = description
         book.no_of_pages = no_of_pages
         book.image = image
+        if request.POST["author"]:
+            author = Author.get_specific_author(request.POST["author"])
+            book.author = author
+        # print(request.POST["author"])
         book.save()
         # return HttpResponse("book added")
         url = Book.get_index_url()
         return redirect(url)
 
-    return render(request,"books/createbook.html")
+
+    authors= Author.get_authors()
+    return render(request,"books/createbook.html", context={'authors':authors})
 
 
 
@@ -82,5 +88,34 @@ def deleteBook(request, id):
     book.delete()
     url = Book.get_index_url()
     return redirect(url)
+
+
+
+
+def editBook(request, id):
+    select_book= Book.get_specific_book(id)
+
+    if request.POST:
+        select_book.title = request.POST["title"]
+        select_book.description = request.POST["description"]
+        select_book.image = request.POST["image"]
+        select_book.no_of_pages = request.POST["no_of_pages"]
+
+        if request.POST["author"]:
+            author = Author.get_specific_author(request.POST["author"])
+            select_book.author = author
+
+
+        select_book.save()
+        url = select_book.get_show_url()
+        return redirect(url)
+
+    authors = Author.get_authors()
+    return  render(request, "books/editbook.html",
+                   context={"book":select_book, "authors":authors})
+
+
+
+
 
 

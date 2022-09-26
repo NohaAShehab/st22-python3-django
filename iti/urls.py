@@ -16,8 +16,8 @@ Including another URLconf
 from django.contrib import admin
 
 from django.urls import path, include
-# from books.views import helloWorld, sayWelcome, sayHi, homepage
-from flowers.views import homepage as flowershomepage
+from django.conf.urls.static import static
+from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('hello', helloWorld, name='helleworld'),
@@ -26,7 +26,8 @@ urlpatterns = [
     # path('home',homepage, name='home'),
     path('books/', include("books.urls")),
     # path('flowers/home', flowershomepage, name='flowershomepage'),
-    path('flowers/', include("flowers.urls"))
+    path('flowers/', include("flowers.urls")),
+    path('authors/', include("authors.urls"))
 
 
-]
+]+static(settings.MEDIA_URL, document_root =settings.MEDIA_ROOT)
