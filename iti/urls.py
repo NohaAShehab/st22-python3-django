@@ -27,7 +27,11 @@ urlpatterns = [
     path('books/', include("books.urls")),
     # path('flowers/home', flowershomepage, name='flowershomepage'),
     path('flowers/', include("flowers.urls")),
-    path('authors/', include("authors.urls"))
+    path('authors/', include("authors.urls")),
+    path('designs/',include('designs.urls')),
+    path('courses/',include('courses.urls')),
+    path('accounts/',include('django.contrib.auth.urls')),
+    path('accounts/',include('accounts.urls')),
 
 
 ]+static(settings.MEDIA_URL, document_root =settings.MEDIA_ROOT)

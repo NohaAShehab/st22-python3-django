@@ -40,9 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # add the newly created application to the installed apps
-'flowers.apps.FlowersConfig',
+    'flowers.apps.FlowersConfig',
     'books.apps.BooksConfig',
-    'authors.apps.AuthorsConfig'
+    'authors.apps.AuthorsConfig',
+    'designs.apps.DesignsConfig',
+    'courses.apps.CoursesConfig',
+    'django_cleanup.apps.CleanupConfig',
+    'accounts.apps.AccountsConfig'
 
 ]
 
@@ -61,7 +65,7 @@ ROOT_URLCONF = 'iti.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

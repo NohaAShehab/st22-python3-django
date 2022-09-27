@@ -1,0 +1,20 @@
+{%extends 'flowers/layouts/base.html'%}
+{% load static %}
+{%block title %} Author details {%endblock%}
+{% block content %}
+    <h1> Author info </h1>
+        <div class="card" style="width: 25rem;display: inline-block;margin:15px;">
+          <img src="{{course.get_image_url}}"
+               width="250" height="250"
+               class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{course.name}}</h5>
+              <h5 class="card-title">Grade: {{course.max_grade}}</h5>
+          <p class="card-text">created_at : {{course.created_at}}</p>
+          <p class="card-text">updated_at : {{course.updated_at}}</p>
+
+
+            <a href="{%url 'courses.index'%}" class="btn btn-primary">Back to all courses </a>
+          </div>
+        </div>
+{%endblock%}

@@ -1,0 +1,25 @@
+{%extends 'flowers/layouts/base.html'%}
+{% load static %}
+{%block title %} Designs index {%endblock%}
+{% block content %}
+
+    <a href="{% url 'designs.create' %}" class="btn btn-success">Create new Design </a>
+
+    <h1> All designs </h1>
+
+    {%for design in designs %}
+        <div class="card" style="width: 20rem;display: inline-block;margin:15px;">
+          <img src="{{design.get_image_url}}"
+               width="250" height="250"
+               class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{design.name}}</h5>
+            <a href="" class="btn btn-primary">View </a>
+                <a href="{{design.get_edit_url}}" class="btn btn-warning">Edit</a>
+              <a href="" class="btn btn-danger">Delete</a>
+
+          </div>
+        </div>
+    {%endfor%}
+
+{%endblock%}
